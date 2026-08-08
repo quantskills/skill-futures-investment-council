@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skill-futures-investment-council"
+version = "0.1.0"
+description = "Futures market analysis skill with investment council research workflows."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "akshare",
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+advanced = [
+    "matplotlib>=3.8",
+    "plotly>=5.20",
+    "ruptures>=1.1",
+    "scikit-learn>=1.4",
+    "scipy>=1.12",
+    "xlsxwriter>=3.2",
+]
+
+[project.scripts]
+futures-investment-council = "skill_futures_investment_council.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "scripts"}
+
+[tool.setuptools.packages.find]
+where = ["scripts"]
+include = ["skill_futures_investment_council*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+skill_futures_investment_council = [
+    "settings.yaml",
+    "settings/*.yaml",
+    "examples/*.csv",
+]
+
+[tool.uv]
+package = true

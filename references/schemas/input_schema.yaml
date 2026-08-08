@@ -1,0 +1,9 @@
+input:
+
+symbol: market: timeframe:
+
+from_skill_futures_investment_council:
+
+technical: - MA20 - MA60 - MA120 - MACD - RSI - ATR - volatility
+
+futures: - inventory - basis - open_interest - supply - demand

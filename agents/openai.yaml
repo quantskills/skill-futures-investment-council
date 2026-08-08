@@ -1,0 +1,7 @@
+interface:
+  display_name: "Futures Investment Council"
+  short_description: "Futures research reports and screening"
+  default_prompt: "Use $skill-futures-investment-council to analyze a futures symbol and produce a committee-style research report."
+
+policy:
+  allow_implicit_invocation: true

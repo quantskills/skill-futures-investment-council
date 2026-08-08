@@ -1,0 +1,134 @@
+project:
+  name: skill-futures-investment-council
+  market_type: futures
+
+runtime:
+  storage_mode: memory
+  export_intermediate: false
+  debug: false
+
+data:
+  frequency: d
+  lookback_days: 420
+  min_history_bars: 260
+  missing_data_policy: degrade
+  require_ohlcv: true
+  optional_fields:
+    - open_interest
+    - spot_price
+    - inventory
+    - production
+    - consumption
+    - imports
+    - exports
+
+data_source:
+  type: pandadata
+  auto_login: true
+  username_env: PANDA_DATA_USERNAME
+  password_env: PANDA_DATA_PASSWORD
+  index_weight_lag: 1
+  fundamental_source:
+    type: akshare
+    enabled: true
+
+features:
+  trend:
+    enabled: true
+    items:
+      ma:
+        windows: [20, 60, 120]
+      macd:
+        fast: 12
+        slow: 26
+        signal: 9
+      adx:
+        window: 14
+      breakout:
+        windows: [20, 55]
+
+  momentum:
+    enabled: true
+    items:
+      rsi:
+        window: 14
+        overbought: 70
+        oversold: 30
+      rate_of_change:
+        windows: [5, 20, 60]
+
+  volatility:
+    enabled: true
+    items:
+      atr:
+        window: 14
+      atr_percent:
+        enabled: true
+      volatility_regime:
+        short_window: 20
+        long_window: 60
+
+  futures:
+    enabled: true
+    items:
+      open_interest_change:
+        windows: [1, 5, 20]
+      price_oi_signal:
+        enabled: true
+      basis:
+        enabled: true
+        convention: spot_minus_futures
+      curve_structure:
+        enabled: true
+
+  fundamental:
+    enabled: true
+    items:
+      inventory_change:
+        enabled: true
+      supply_demand_balance:
+        enabled: true
+      seasonality:
+        enabled: true
+        lookback_years: 10
+
+  risk:
+    enabled: true
+    items:
+      drawdown:
+        window: 252
+      position_risk:
+        enabled: true
+
+experts:
+  routing_mode: automatic
+  trend:
+    - jesse_livermore
+    - richard_dennis
+    - ed_seykota
+  commodity:
+    - fu_haitang
+    - lin_guangmao
+    - jim_rogers
+  macro:
+    - ray_dalio
+    - george_soros
+    - stanley_druckenmiller
+  risk:
+    - paul_tudor_jones
+    - qingze
+
+report:
+  language: auto
+  format: markdown
+  include:
+    - market_regime
+    - technical_analysis
+    - futures_structure
+    - fundamental_analysis
+    - expert_opinions
+    - consensus
+    - conflicts
+    - risk_warning
+    - confidence
+  prohibit_direct_trade_command: true

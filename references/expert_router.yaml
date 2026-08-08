@@ -1,0 +1,58 @@
+# Complete expert routing for skill-futures-investment-council
+routing_mode: automatic
+
+defaults:
+  min_experts: 4
+  max_experts: 7
+  require_risk_expert: true
+  load_all_experts: false
+
+groups:
+  trend:
+    - jesse_livermore
+    - richard_dennis
+    - ed_seykota
+    - john_w_henry
+  macro:
+    - george_soros
+    - ray_dalio
+    - stanley_druckenmiller
+    - bruce_kovner
+  commodity:
+    - jim_rogers
+    - fu_haitang
+    - lin_guangmao
+    - ye_qingjun
+    - ge_weidong
+  risk:
+    - paul_tudor_jones
+    - larry_hite
+    - qingze
+
+market_hints:
+  precious_metals:
+    prefer: [jesse_livermore, richard_dennis, ray_dalio, george_soros, stanley_druckenmiller, paul_tudor_jones]
+  base_metals:
+    prefer: [jesse_livermore, fu_haitang, lin_guangmao, jim_rogers, ge_weidong, ray_dalio, paul_tudor_jones]
+  energy:
+    prefer: [richard_dennis, jim_rogers, fu_haitang, george_soros, ray_dalio, bruce_kovner, paul_tudor_jones]
+  agriculture:
+    prefer: [richard_dennis, jim_rogers, fu_haitang, lin_guangmao, ye_qingjun, qingze]
+  black_industrials:
+    prefer: [fu_haitang, lin_guangmao, ge_weidong, ye_qingjun, jesse_livermore, paul_tudor_jones]
+  financial_futures:
+    prefer: [ray_dalio, george_soros, stanley_druckenmiller, bruce_kovner, jesse_livermore, larry_hite]
+
+feature_requirements:
+  trend: [ma_alignment, adx, breakout_20, breakout_55, macd]
+  volatility: [atr_percent, volatility_regime, drawdown]
+  positioning: [open_interest_change, price_oi_state]
+  physical: [inventory_change, supply_demand_balance, basis, curve_structure, seasonality]
+  macro: [macro_growth, macro_inflation, rates, usd, liquidity]
+
+selection_rules:
+  - "Do not load every expert for every task."
+  - "Prefer experts whose required evidence is available."
+  - "Always include at least one risk lens for actionable market analysis."
+  - "If physical fundamentals are unavailable, reduce commodity-expert weight rather than inventing data."
+  - "For compare/screen tasks, use fewer experts per candidate and deepen only on finalists."

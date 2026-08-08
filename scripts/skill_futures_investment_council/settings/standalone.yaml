@@ -1,0 +1,31 @@
+data_source:
+  type: csv
+  path: ../examples
+  symbol_column: symbol
+  datetime_column: datetime
+  security_type: futures
+
+jobs:
+  - cls: ChainCalculator
+    name: basic_analysis
+    symbols:
+      - all.all
+    md_freq: d
+    output_path: ../output
+    compression: false
+    workers: 1
+    tasks:
+      - name: change_rate
+        inputs: close
+        output: change_rate
+      - name: moving_average
+        inputs: close
+        output: MA
+        windows: [3, 5]
+      - name: rolling_zscore
+        inputs: close_change_rate
+        output: zscore
+        windows: [3]
+      - name: daily_amplitude
+        inputs: close
+        output: amplitude

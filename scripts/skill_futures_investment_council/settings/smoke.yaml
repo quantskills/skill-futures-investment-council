@@ -1,0 +1,68 @@
+project:
+  name: skill-futures-investment-council
+  market_type: futures
+
+runtime:
+  storage_mode: memory
+  export_intermediate: false
+  debug: false
+
+data:
+  frequency: d
+  missing_data_policy: degrade
+
+data_source:
+  type: csv
+  path: ../examples
+  symbol_column: symbol
+  datetime_column: datetime
+  security_type: futures
+
+features:
+  trend:
+    items:
+      ma:
+        windows: [3, 5, 10]
+      macd:
+        fast: 4
+        slow: 8
+        signal: 3
+      adx:
+        window: 5
+      breakout:
+        windows: [3, 5]
+  momentum:
+    items:
+      rsi:
+        window: 5
+        overbought: 70
+        oversold: 30
+      rate_of_change:
+        windows: [1, 3, 5]
+  volatility:
+    items:
+      atr:
+        window: 5
+      volatility_regime:
+        short_window: 3
+        long_window: 5
+  futures:
+    items:
+      open_interest_change:
+        windows: [1, 3, 5]
+  risk:
+    items:
+      drawdown:
+        window: 10
+
+experts:
+  routing_mode: automatic
+  trend:
+    - jesse_livermore
+  commodity:
+    - fu_haitang
+  risk: []
+
+report:
+  format: markdown
+  prohibit_direct_trade_command: true

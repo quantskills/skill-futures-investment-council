@@ -1,0 +1,40 @@
+# Local secrets and environment
+.env
+.env.*
+!.env.example
+
+# Python runtime and build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+build/
+dist/
+
+# Tool caches
+.uv-cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editor / local history
+.history/
+.vscode/
+.idea/
+
+# Runtime outputs and generated reports
+output/
+outputs/
+reports/
+*.log
+*.tmp
+scripts/cron/
+
+# Legacy offline/generated data that should not ship with the skill
+settings/data/
+references/legacy/

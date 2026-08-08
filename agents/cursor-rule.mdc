@@ -1,0 +1,6 @@
+# Futures Investment Council
+
+Use the repository `SKILL.md` workflow.
+Prefer `scripts/analyze_futures.py`, `scripts/compare_futures.py`, `scripts/screen_futures.py`, and `scripts/smoke_test.py`.
+Use `settings.yaml` for live Pandadata analysis and `settings/smoke.yaml` only for offline tests.
+Load only the relevant expert notes and references.
