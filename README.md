@@ -1,5 +1,7 @@
 # Futures Investment Council｜期货投资委员会研究 Skill
 
+English version: [README.en.md](README.en.md)
+
 > 用一套可重复的研究流程，把**期货行情、趋势/动量/波动率、持仓与期限结构、商品基本面**整理成一份“投资委员会式”研究报告：不仅给出当前市场状态，还明确说明**证据、分歧、反方情景、失效条件与数据完整性**。
 
 `skill-futures-investment-council` 面向商品期货、金融期货等期货研究场景。用户不需要先理解项目里的脚本或专家资料；安装 Skill 后，直接用自然语言提出研究问题即可，Agent 会根据任务选择分析、比较或扫描流程。
